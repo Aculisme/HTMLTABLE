@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Periodic-Table-Tests</title>
+        
+        <style>
+            body{background-color:orange;
+                text-align:center;
+                font-family:helvetica;
+                font-size:100%;}
+            table{width:100%;
+                height: 75%;}
+            td{
+                
+                background-color: rgb(100,100,100);
+                font-size: 150%;
+                border: 1px solid black;
+                text-align: center;
+            }
+            th{background-color: orange;
+            border:none;}
+
+            .alkali{background-color: rgb(255, 92, 84);}
+            .alkaline-earth-metal{background-color: rgb(255, 236, 170);}
+            .lanthanide{background-color: rgb(147, 135, 255);}
+            .actinide{background-color: rgb(239, 135, 255);}
+            .transition-metal{background-color: rgb(255, 150, 164);}
+            .post-transition-metal{background-color: rgb(188, 188, 188);}
+            .metalloid{background-color: rgb(163, 168, 70);}
+            .poly-atomic-non-metal{background-color: rgb(117, 255, 176);}
+            .diatomic-non-metal{background-color: rgb(231, 255, 56);}
+            .noble-gas{background-color: rgb(126, 239, 252);}
+            .unknown{background-color: rgb(242, 242, 242);}
+
+            a{text-decoration: none;
+                    color:blue;}  
+            h1{font-size: 150%;}
+            
+            .Hinfo, .Heinfo, .Liinfo, .Beinfo, .Binfo, .Cinfo, .Ninfo, .Oinfo, .Finfo, .Neinfo, .Nainfo, .Mginfo, .Alinfo, .Siinfo, .Pinfo, .Sinfo, .Clinfo, .Arinfo, .Kinfo, .Cainfo, .Scinfo, .Tiinfo, .Vinfo, .Crinfo, .Mninfo, .Feinfo, .Coinfo, .Niinfo, .Cuinfo, .Zninfo, .Gainfo, .Geinfo, .Asinfo, .Seinfo, .Brinfo, .Krinfo, .Rbinfo, .Srinfo, .Yinfo, .Zrinfo, .Nbinfo, .Moinfo, .Tcinfo, .Ruinfo, .Rhinfo, .Pdinfo, .Aginfo, .Cdinfo, .Ininfo, .Sninfo, .Sbinfo, .Teinfo, .Iinfo, .Xeinfo, .Csinfo, .Bainfo, .Luinfo, .Hfinfo, .Tainfo, .Winfo, .Reinfo, .Osinfo, .Irinfo, .Ptinfo, .Auinfo, .Hginfo, .Tlinfo, .Pbinfo, .Biinfo, .Poinfo, .Atinfo, .Rninfo, .Frinfo, .Rainfo, .Acinfo, .Rfinfo, .Dbinfo, .Sginfo, .Bhinfo, .Hsinfo, .Mtinfo, .Dsinfo, .Rginfo, .Cninfo, .Uutinfo, .Flinfo, .Uupinfo, .Lvinfo, .Uusinfo, .Uuoinfo{
+                position: absolute;
+                visibility: hidden;
+                text-align: left;
+                border: 1px dotted black;
+                left:190;
+                right:500;
+                top:90;
+                font-size: 68%;}
+
+            .mass{font-size:0.45em;}  
+            .number{font-size:0.45em;}  
+            .empty{background-color: orange;
+                border:none;}
+            .legend{border:1px dotted black;
+                color:black;
+                position:absolute;
+                right:0px;
+                bottom:0px;
+                left:0px;
+                margin-bottom: 25px;}
+            .github{font-style: italic;
+                margin-bottom: 0px;
+                border:none;} 
+            
+            #H:hover .Hinfo{visibility: visible;}
+            #He:hover .Heinfo{visibility: visible;}
+            
+            #Li:hover .Liinfo{visibility: visible;}
+            #Be:hover .Beinfo{visibility: visible;}
+            #B:hover .Binfo{visibility: visible;}
+            #C:hover .Cinfo{visibility: visible;}
+            #N:hover .Ninfo{visibility: visible;}
+            #O:hover .Oinfo{visibility: visible;}
+            #F:hover .Finfo{visibility: visible;}
+            #Ne:hover .Neinfo{visibility: visible;}
+            
+            #Na:hover .Nainfo{visibility: visible;}
+            #Mg:hover .Mginfo{visibility: visible;}
+            #Al:hover .Alinfo{visibility: visible;}
+            #Si:hover .Siinfo{visibility: visible;}
+            #P:hover .Pinfo{visibility: visible;}
+            #S:hover .Sinfo{visibility: visible;}
+            #Cl:hover .Clinfo{visibility: visible;}
+            #Ar:hover .Arinfo{visibility: visible;}
+
+            #K:hover .Kinfo{visibility: visible;}
+            #Ca:hover .Cainfo{visibility: visible;}
+            #Sc:hover .Scinfo{visibility: visible;}
+            #Ti:hover .Tiinfo{visibility: visible;}
+            #V:hover .Vinfo{visibility: visible;}
+            #Cr:hover .Crinfo{visibility: visible;}
+            #Mn:hover .Mninfo{visibility: visible;}
+            #Fe:hover .Feinfo{visibility: visible;}
+            #Co:hover .Coinfo{visibility: visible;}
+            #Ni:hover .Niinfo{visibility: visible;}
+            #Cu:hover .Cuinfo{visibility: visible;}
+            #Zn:hover .Zninfo{visibility: visible;}
+            #Ga:hover .Gainfo{visibility: visible;}
+            #Ge:hover .Geinfo{visibility: visible;}
+            #As:hover .Asinfo{visibility: visible;}
+            #Se:hover .Seinfo{visibility: visible;}
+            #Br:hover .Brinfo{visibility: visible;}
+            #Kr:hover .Krinfo{visibility: visible;}
+
+            #Rb:hover .Rbinfo{visibility: visible;}
+            #Sr:hover .Srinfo{visibility: visible;}
+            #Y:hover .Yinfo{visibility: visible;}
+            #Zr:hover .Zrinfo{visibility: visible;}
+            #Nb:hover .Nbinfo{visibility: visible;}
+            #Mo:hover .Moinfo{visibility: visible;}
+            #Tc:hover .Tcinfo{visibility: visible;}
+            #Ru:hover .Ruinfo{visibility: visible;}
+            #Rh:hover .Rhinfo{visibility: visible;}
+            #Pd:hover .Pdinfo{visibility: visible;}
+            #Ag:hover .Aginfo{visibility: visible;}
+            #Cd:hover .Cdinfo{visibility: visible;}
+            #In:hover .Ininfo{visibility: visible;}
+            #Sn:hover .Sninfo{visibility: visible;}
+            #Sb:hover .Sbinfo{visibility: visible;}
+            #Te:hover .Teinfo{visibility: visible;}
+            #I:hover .Iinfo{visibility: visible;}
+            #Xe:hover .Xeinfo{visibility: visible;}
+
+            #Cs:hover .Csinfo{visibility: visible;}
+            #Ba:hover .Bainfo{visibility: visible;}
+            #Lu:hover .Luinfo{visibility: visible;}
+            #Hf:hover .Hfinfo{visibility: visible;}
+            #Ta:hover .Tainfo{visibility: visible;}
+            #W:hover .Winfo{visibility: visible;}
+            #Re:hover .Reinfo{visibility: visible;}
+            #Os:hover .Osinfo{visibility: visible;}
+            #Ir:hover .Irinfo{visibility: visible;}
+            #Pt:hover .Ptinfo{visibility: visible;}
+            #Au:hover .Auinfo{visibility: visible;}
+            #Hg:hover .Hginfo{visibility: visible;}
+            #Tl:hover .Tlinfo{visibility: visible;}
+            #Pb:hover .Pbinfo{visibility: visible;}
+            #Bi:hover .Biinfo{visibility: visible;}
+            #Po:hover .Poinfo{visibility: visible;}
+            #At:hover .Atinfo{visibility: visible;}
+            #Rn:hover .Rninfo{visibility: visible;}
+
+            #Fr:hover .Frinfo{visibility: visible;}
+            #Ra:hover .Rainfo{visibility: visible;}
+            #Ac:hover .Acinfo{visibility: visible;}
+            #Rf:hover .Rfinfo{visibility: visible;}
+            #Db:hover .Dbinfo{visibility: visible;}
+            #Sg:hover .Sginfo{visibility: visible;}
+            #Bh:hover .Bhinfo{visibility: visible;}
+            #Hs:hover .Hsinfo{visibility: visible;}
+            #Mt:hover .Mtinfo{visibility: visible;}
+            #Ds:hover .Dsinfo{visibility: visible;}
+            #Rg:hover .Rginfo{visibility: visible;}
+            #Cn:hover .Cninfo{visibility: visible;}
+            #Uut:hover .Uutinfo{visibility: visible;}
+            #Fl:hover .Flinfo{visibility: visible;}
+            #Uup:hover .Uupinfo{visibility: visible;}
+            #Lv:hover .Lvinfo{visibility: visible;}
+            #Uus:hover .Uusinfo{visibility: visible;}
+            #Uuo:hover .Uuoinfo{visibility: visible;}
+
+        </style>
+    </head>
+    <body>
+    
+    <h1>HTML Periodic Table of the Elements</h1>
+    
+    <table>
+
+<!-- Table Header-->
+
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+            <th>16</th>
+            <th>17</th>
+            <th>18</th>
+        </tr>
+
+<!-- Table Row 1-->
+
+        <tr>
+            <td id="H" class="diatomic-non-metal"><p class="Hinfo">
+            <strong>Hydrogen</strong><br>
+            Key isotopes: 1H, 2H<br>
+            Electron configuration: 1s1<br>
+            Density(g cm−3): 0.000082<br>
+            Relative atomic mass: 1.008<br>
+            Melting point: −259.16°C, −434.49°F, 13.99 K<br>
+            Boiling point: −252.879°C, −423.182°F, 20.271 K<br>
+            </p>
+            <a href="https://en.wikipedia.org/wiki/Hydrogen">H</a><span class="number"><br>1</span><span class="mass">&nbsp; 1</span></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td id="He" class="noble-gas"><p class="Heinfo"><strong>Hydrogen</strong><br>
+            Key isotopes: 4He<br>
+            Electron configuration: 1s2<br>
+            Density(g cm−3): 0.000164 <br>
+            Relative atomic mass: 4.003<br>
+            Melting point: Unknown<br>
+            Boiling point: −268.928°C, −452.07°F, 4.222 K<br>
+            </p><a href="https://en.wikipedia.org/wiki/Helium">He</a><span class="number"><br>2</span><span class="mass">&nbsp; 4</span></td>
+        </tr>
+
+<!-- Table Row 2-->
+
+        <tr>
+            <td id="Li" class="alkali"><p class="Liinfo"><strong>Lithium</strong><br>
+            Key isotopes: 7Li<br>
+            Electron configuration: [He] 2s1<br>
+            Density(g cm−3): 0.534<br>
+            Relative atomic mass: 6.94<br>
+            Melting point: 180.50°C, 356.90°F, 453.65 K<br>
+            Boiling point: 1342°C, 2448°F, 1615 K</p><a href="https://en.wikipedia.org/wiki/Lithium">Li</a><span class="number"><br>3</span><span class="mass">&nbsp; 7</span></td>
+            <td id="Be" class="alkaline-earth-metal"><p class="Beinfo"><strong>Beryllium</strong><br>
+            Key isotopes: 9Be <br>
+            Electron configuration: [He] 2s2<br>
+            Density(g cm−3): 1.85<br>
+            Relative atomic mass: 9.012<br>
+            Melting point: 1287°C, 2349°F, 1560 K<br>
+            Boiling point: 2468°C, 4474°F, 2741 K</p><a href="https://en.wikipedia.org/wiki/Beryllium">Be</a><span class="number"><br>4</span><span class="mass">&nbsp; 9</span></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td id="B" class="metalloid"><p class="Binfo"><strong>Boron</strong><br>
+            Key isotopes: 11B<br>
+            Electron configuration: [He] 2s22p1<br>
+            Density(g cm−3): 2.34<br>
+            Relative atomic mass: 10.81<br>
+            Melting point: 2077°C, 3771°F, 2350 K<br>
+            Boiling point: 4000°C, 7232°F, 4273 K</p><a href="https://en.wikipedia.org/wiki/Boron">B</a><span class="number"><br>5</span><span class="mass">&nbsp; 11</span></td>
+            <td id="C" class="poly-atomic-non-metal"><p class="Cinfo"><strong>Carbon</strong><br>
+            Key isotopes: 12C, 13C, 14C<br>
+            Electron configuration: [He] 2s22p2<br>
+            Density(g cm−3): 3.513 (diamond); 2.2 (graphite)<br>
+            Relative atomic mass: 12.011<br>
+            Melting point: Sublimes at 3825°C, 6917°F, 4098 K<br>
+            Boiling point: Sublimes at 3825°C, 6917°F, 4098 K</p><a href="https://en.wikipedia.org/wiki/Carbon">C</a><span class="number"><br>6</span><span class="mass">&nbsp; 12</span></td>
+            <td id="N" class="diatomic-non-metal"><p class="Ninfo"><strong>Nitrogen</strong><br>
+            Key isotopes: 14N <br>
+            Electron configuration: [He] 2s22p3<br>
+            Density(g cm−3): 0.001145<br>
+            Relative atomic mass: 14.007<br>
+            Melting point: −210.0°C, −346.0°F, 63.2 K<br>
+            Boiling point: −195.795°C, −320.431°F, 77.355 K</p><a href="https://en.wikipedia.org/wiki/Nitrogen">N</a><span class="number"><br>7</span><span class="mass">&nbsp; 14</span></td>
+            <td id="O" class="diatomic-non-metal"><p class="Oinfo"><strong>Oxygen</strong><br>
+            Key isotopes: 16O<br>
+            Electron configuration: [He] 2s22p4<br>
+            Density(g cm−3): 0.001308<br>
+            Relative atomic mass: 15.999<br>
+            Melting point: −218.79°C, −361.82°F, 54.36 K<br>
+            Boiling point: −182.962°C, −297.332°F, 90.188 K</p><a href="https://en.wikipedia.org/wiki/Oxygen">O</a><span class="number"><br>8</span><span class="mass">&nbsp; 16</span></td>
+            <td id="F" class="diatomic-non-metal"><p class="Finfo"><strong>Fluorine</strong><br>
+            Key isotopes: 19F <br>
+            Electron configuration: [He] 2s22p5<br>
+            Density(g cm−3): 0.001553<br>
+            Relative atomic mass: 18.998<br>
+            Melting point: −219.67°C, −363.41°F, 53.48 K<br>
+            Boiling point: −188.11°C, −306.6°F, 85.04 K</p><a href="https://en.wikipedia.org/wiki/Fluorine">F</a><span class="number"><br>9</span><span class="mass">&nbsp; 19</span></td>
+            
+            <td id="Ne" class="noble-gas"><p class="Neinfo"><strong>Neon</strong><br>
+            Key isotopes: 20Ne<br>
+            Electron configuration: [He] 2s22p6<br>
+            Density(g cm−3): 0.000825<br>
+            Relative atomic mass: 20.180<br>
+            Melting point: −248.59°C, −415.46°F, 24.56 K<br>
+            Boiling point: −246.046°C, −410.883°F, 27.104 K</p><a href="https://en.wikipedia.org/wiki/Neon">Ne</a><span class="number"><br>10</span><span class="mass">&nbsp; 20</span></td>
+        </tr>
+
+<!-- Table Row 3-->
+
+        <tr>
+            <td id="Na" class="alkali"><p class="Nainfo"><strong>Sodium</strong><br>
+            Key isotopes: 23Na<br>
+            Electron configuration: [Ne] 3s1<br>
+            Density(g cm−3): 0.97<br>
+            Relative atomic mass: 22.990<br>
+            Melting point: 97.794°C, 208.029°F, 370.944 K<br>
+            Boiling point: 882.940°C, 1621.292°F, 1156.090 K</p><a href="https://en.wikipedia.org/wiki/Sodium">Na</a><span class="number"><br>11</span><span class="mass">&nbsp; 23</span></td>
+            <td id="Mg" class="alkaline-earth-metal"><p class="Mginfo"><strong>Magnesium</strong><br>
+            Key isotopes: 24Mg<br>
+            Electron configuration: [Ne] 3s2<br>
+            Density(g cm−3): 1.74<br>
+            Relative atomic mass: 24.305<br>
+            Melting point: 650°C, 1202°F, 923 K<br>
+            Boiling point: 1090°C, 1994°F, 1363 K</p><a href="https://en.wikipedia.org/wiki/Magnesium">Mg</a><span class="number"><br>12</span><span class="mass">&nbsp; 24</span></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td id="Al" class="post-transition-metal"><p class="Alinfo"><strong>Aluminium</strong><br>
+            Key isotopes: 27Al<br>
+            Electron configuration: [Ne] 3s23p1<br>
+            Density(g cm−3): 2.70<br>
+            Relative atomic mass: 26.982<br>
+            Melting point: 660.323°C, 1220.581°F, 933.473 K<br>
+            Boiling point: 2519°C, 4566°F, 2792 K</p><a href="https://en.wikipedia.org/wiki/Aluminum">Al</a><span class="number"><br>13</span><span class="mass">&nbsp; 27</span></td>
+            <td id="Si" class="metalloid"><p class="Siinfo"><strong>Silicon</strong><br>
+            Key isotopes: 28Si, 30Si<br>
+            Electron configuration: [Ne] 3s23p2<br>
+            Density(g cm−3): 2.3296<br>
+            Relative atomic mass: 28.085<br>
+            Melting point: 1414°C, 2577°F, 1687 K<br>
+            Boiling point: 3265°C, 5909°F, 3538 K</p><a href="https://en.wikipedia.org/wiki/Silicon">Si</a><span class="number"><br>14</span><span class="mass">&nbsp; 28</span></td>
+            <td id="P" class="poly-atomic-non-metal"><p class="Pinfo"><strong>Phosphorus</strong><br>
+            Key isotopes: 31P<br>
+            Electron configuration: [[Ne] 3s23p3<br>
+            Density(g cm−3): 1.823 (white)<br>
+            Relative atomic mass: 30.974<br>
+            Melting point: 44.15°C, 111.47°F, 317.3 K<br>
+            Boiling point: 280.5°C, 536.9°F, 553.7 K</p><a href="https://en.wikipedia.org/wiki/Phosphorus">P</a><span class="number"><br>15</span><span class="mass">&nbsp; 31</span></td>
+            <td id="S" class="poly-atomic-non-metal"><p class="Sinfo"><strong>Sulphur</strong><br>
+            Key isotopes: 32S<br>
+            Electron configuration: [Ne] 3s23p4<br>
+            Density(g cm−3): 2.07<br>
+            Relative atomic mass: 32.06<br>
+            Melting point: 115.21°C, 239.38°F, 388.36 K<br>
+            Boiling point: 444.61°C, 832.3°F, 717.76 K</p><a href="https://en.wikipedia.org/wiki/Sulfur">S</a><span class="number"><br>16</span><span class="mass">&nbsp; 32</span></td>
+            <td id="Cl" class="diatomic-non-metal"><p class="Clinfo"><strong>Chlorine</strong><br>
+            Key isotopes: 35Cl, 37Cl<br>
+            Electron configuration: [Ne] 3s23p5<br>
+            Density(g cm−3): 0.002898<br>
+            Relative atomic mass: 35.45<br>
+            Melting point: −101.5°C, −150.7°F, 171.7 K<br>
+            Boiling point: −34.04°C, −29.27°F, 239.11 K</p><a href="https://en.wikipedia.org/wiki/Chlorine">Cl</a><span class="number"><br>17</span><span class="mass">&nbsp; 35</span></td>
+            <td id="Ar" class="noble-gas"><p class="Arinfo"><strong>Argon</strong><br>
+            Key isotopes: 40Ar<br>
+            Electron configuration: [Ne] 3s23p6<br>
+            Density(g cm−3): 0.001633<br>
+            Relative atomic mass: 39.948<br>
+            Melting point: −189.34°C, −308.81°F, 83.81 K<br>
+            Boiling point: −185.848°C, −302.526°F, 87.302 K</p><a href="https://en.wikipedia.org/wiki/Argon">Ar</a><span class="number"><br>18</span><span class="mass">&nbsp; 40</span></td>
+        </tr>
+
+<!-- Table Row 4-->
+        <tr>
+            <td id="K" class="alkali"><p class="Kinfo"><strong>Potassium</strong><br>
+            Key isotopes: 39K<br>
+            Electron configuration: [Ar] 4s1<br>
+            Density(g cm−3): 0.89<br>
+            Relative atomic mass: 39.098<br>
+            Melting point: 63.5°C, 146.3°F, 336.7 K<br>
+            Boiling point: 759°C, 1398°F, 1032 K</p><a href="https://en.wikipedia.org/wiki/Potassium">K</a><span class="number"><br>19</span><span class="mass">&nbsp; 39</span></td>
+            <td id="Ca" class="alkaline-earth-metal"><p class ="Cainfo"><strong>Calcium</strong><br>
+            Key isotopes: 40Ca<br>
+            Electron configuration: [Ar] 4s2<br>
+            Density(g cm−3): 1.54<br>
+            Relative atomic mass: 40.078<br>
+            Melting point: 842°C, 1548°F, 1115 K<br>
+            Boiling point: 1484°C, 2703°F, 1757 K</p><a href="https://en.wikipedia.org/wiki/Calcium">Ca</a><span class="number"><br>20</span><span class="mass">&nbsp; 40</span></td>
+            <td id="Sc" class="transition-metal"><p class="Scinfo"><strong>Scandium</strong><br>
+            Key isotopes: 45Sc<br>
+            Electron configuration: [Ar] 3d14s2<br>
+            Density(g cm−3): 2.99<br>
+            Relative atomic mass: 44.956<br>
+            Melting point: 1541°C, 2806°F, 1814 K<br>
+            Boiling point: 2836°C, 5137°F, 3109 K</p><a href="https://en.wikipedia.org/wiki/Scandium">Sc</a><span class="number"><br>21</span><span class="mass">&nbsp; 45</span></td>
+            <td id="Ti" class="transition-metal"><p class="Tiinfo"><strong>Titanium</strong><br>
+            Key isotopes: 48Ti<br>
+            Electron configuration: [Ar] 3d24s2<br>
+            Density(g cm−3): 4.506<br>
+            Relative atomic mass: 47.867<br>
+            Melting point: 1670°C, 3038°F, 1943 K<br>
+            Boiling point: 3287°C, 5949°F, 3560 K</p><a href="https://en.wikipedia.org/wiki/Titanium">Ti</a><span class="number"><br>22</span><span class="mass">&nbsp; 48</span></td>
+            <td id="V" class="transition-metal"><p class="Vinfo"><strong>Vanadium</strong><br>
+            Key isotopes: 51V<br>
+            Electron configuration: [Ar] 3d34s2<br>
+            Density(g cm−3): 6.0<br>
+            Relative atomic mass: 50.942<br>
+            Melting point: 1910°C, 3470°F, 2183 K<br>
+            Boiling point: 3407°C, 6165°F, 3680 K</p><a href="https://en.wikipedia.org/wiki/Vanadium">V</a><span class="number"><br>23</span><span class="mass">&nbsp; 51</span></td>
+            <td id="Cr" class="transition-metal"><p class="Crinfo"><strong>Chromium</strong><br>
+            Key isotopes: 52Cr<br>
+            Electron configuration: [Ar] 3d54s1<br>
+            Density(g cm−3): 7.15<br>
+            Relative atomic mass: 51.996<br>
+            Melting point: 1907°C, 3465°F, 2180 K<br>
+            Boiling point: 2671°C, 4840°F, 2944 K</p><a href="https://en.wikipedia.org/wiki/Chromium">Cr</a><span class="number"><br>24</span><span class="mass">&nbsp; 52</span></td>
+            <td id="Mn" class="transition-metal"><p class="Mninfo"><strong>Manganese</strong><br>
+            Key isotopes: 55Mn<br>
+            Electron configuration: [[Ar] 3d54s2<br>
+            Density(g cm−3): 7.3<br>
+            Relative atomic mass: 54.938<br>
+            Melting point: 1246°C, 2275°F, 1519 K<br>
+            Boiling point: 2061°C, 3742°F, 2334 K</p><a href="https://en.wikipedia.org/wiki/Manganese">Mn</a><span class="number"><br>25</span><span class="mass">&nbsp; 55</span></td>
+            <td id="Fe" class="transition-metal"><p class="Feinfo"><strong>Iron</strong><br>
+            Key isotopes: 56Fe<br>
+            Electron configuration: [Ar] 3d64s2<br>
+            Density(g cm−3): 7.87<br>
+            Relative atomic mass: 55.845<br>
+            Melting point: 1538°C, 2800°F, 1811 K<br>
+            Boiling point: 2861°C, 5182°F, 3134 K</p><a href="https://en.wikipedia.org/wiki/Iron">Fe</a><span class="number"><br>26</span><span class="mass">&nbsp; 56</span></td>
+            <td id="Co" class="transition-metal"><p class="Coinfo"><strong>Cobalt</strong><br>
+            Key isotopes: 59Co<br>
+            Electron configuration: [Ar] 3d74s2<br>
+            Density(g cm−3): 8.86<br>
+            Relative atomic mass: 58.933<br>
+            Melting point: 1495°C, 2723°F, 1768 K<br>
+            Boiling point: 2927°C, 5301°F, 3200 K</p><a href="https://en.wikipedia.org/wiki/Cobalt">Co</a><span class="number"><br>27</span><span class="mass">&nbsp; 59</span></td>
+            <td id="Ni" class="transition-metal"><p class="Niinfo"><strong>Nickel</strong><br>
+            Key isotopes: 58Ni<br>
+            Electron configuration: [Ar] 3d84s2<br>
+            Density(g cm−3): 8.90<br>
+            Relative atomic mass: 58.693<br>
+            Melting point: 1455°C, 2651°F, 1728 K<br>
+            Boiling point: 2913°C, 5275°F, 3186 K</p><a href="https://en.wikipedia.org/wiki/Nickel">Ni</a><span class="number"><br>28</span><span class="mass">&nbsp; 59</span></td>
+            <!-- Completed--> 
+            <td id="Cu" class="transition-metal"><p class="Cuinfo"><strong>Copper</strong><br>
+            Key isotopes: 39K<br>
+            Electron configuration: [Ar] 4s1<br>
+            Density(g cm−3): 0.89<br>
+            Relative atomic mass: 39.098<br>
+            Melting point: 63.5°C, 146.3°F, 336.7 K<br>
+            Boiling point: 759°C, 1398°F, 1032 K</p><a href="https://en.wikipedia.org/wiki/Copper">Cu</a><span class="number"><br>29</span><span class="mass">&nbsp; 64</span></td>
+            <td id="Zn" class="transition-metal"><p class="Zninfo"><strong>Zinc</strong><br>
+            Key isotopes: 39K<br>
+            Electron configuration: [Ar] 4s1<br>
+            Density(g cm−3): 0.89<br>
+            Relative atomic mass: 39.098<br>
+            Melting point: 63.5°C, 146.3°F, 336.7 K<br>
+            Boiling point: 759°C, 1398°F, 1032 K</p><a href="https://en.wikipedia.org/wiki/Zinc">Zn</a><span class="number"><br>30</span><span class="mass">&nbsp; 65</span></td>
+            <td id="Ga" class="post-transition-metal"><p class="Gainfo"><strong>Gallium</strong><br>
+            Key isotopes: 39K<br>
+            Electron configuration: [Ar] 4s1<br>
+            Density(g cm−3): 0.89<br>
+            Relative atomic mass: 39.098<br>
+            Melting point: 63.5°C, 146.3°F, 336.7 K<br>
+            Boiling point: 759°C, 1398°F, 1032 K</p><a href="https://en.wikipedia.org/wiki/Gallium">Ga</a><span class="number"><br>31</span><span class="mass">&nbsp; 70</span></td>
+            <td id="Ge" class="metalloid"><p class="Geinfo"><strong>Germanium</strong><br>
+            Key isotopes: 39K<br>
+            Electron configuration: [Ar] 4s1<br>
+            Density(g cm−3): 0.89<br>
+            Relative atomic mass: 39.098<br>
+            Melting point: 63.5°C, 146.3°F, 336.7 K<br>
+            Boiling point: 759°C, 1398°F, 1032 K</p><a href="https://en.wikipedia.org/wiki/Germanium">Ge</a><span class="number"><br>32</span><span class="mass">&nbsp; 73</span></td>
+            <td id="As" class="metalloid"><p class="Asinfo"><strong>Arsenic</strong><br>
+            Key isotopes: 39K<br>
+            Electron configuration: [Ar] 4s1<br>
+            Density(g cm−3): 0.89<br>
+            Relative atomic mass: 39.098<br>
+            Melting point: 63.5°C, 146.3°F, 336.7 K<br>
+            Boiling point: 759°C, 1398°F, 1032 K</p><a href="https://en.wikipedia.org/wiki/Arsenic">As</a><span class="number"><br>33</span><span class="mass">&nbsp; 75</span></td>
+            <td id="Se" class="poly-atomic-non-metal"><p class="Seinfo"><strong>Selenium</strong><br>
+            Key isotopes: 39K<br>
+            Electron configuration: [Ar] 4s1<br>
+            Density(g cm−3): 0.89<br>
+            Relative atomic mass: 39.098<br>
+            Melting point: 63.5°C, 146.3°F, 336.7 K<br>
+            Boiling point: 759°C, 1398°F, 1032 K</p><a href="https://en.wikipedia.org/wiki/Selenium">Se</a><span class="number"><br>34</span><span class="mass">&nbsp; 79</span></td>
+            <td id="Br" class="diatomic-non-metal"><p class="Brinfo"><strong>Bromine</strong><br>
+            Key isotopes: 39K<br>
+            Electron configuration: [Ar] 4s1<br>
+            Density(g cm−3): 0.89<br>
+            Relative atomic mass: 39.098<br>
+            Melting point: 63.5°C, 146.3°F, 336.7 K<br>
+            Boiling point: 759°C, 1398°F, 1032 K</p><a href="https://en.wikipedia.org/wiki/Bromine">Br</a><span class="number"><br>35</span><span class="mass">&nbsp; 80</span></td>
+            <td id="Kr" class="noble-gas"><p class="Krinfo"><strong>Krypton</strong><br>
+            Key isotopes: 39K<br>
+            Electron configuration: [Ar] 4s1<br>
+            Density(g cm−3): 0.89<br>
+            Relative atomic mass: 39.098<br>
+            Melting point: 63.5°C, 146.3°F, 336.7 K<br>
+            Boiling point: 759°C, 1398°F, 1032 K</p><a href="https://en.wikipedia.org/wiki/Krypton">Kr</a><span class="number"><br>36</span><span class="mass">&nbsp; 84</span></td>
+        </tr>
+
+<!-- Table Row 5-->
+
+        <tr>
+            <td id="Rb" class="alkali"><p class="Rbinfo">Rubidium</p><a href="https://en.wikipedia.org/wiki/Rubidium">Rb</a><span class="number"><br>37</span><span class="mass">&nbsp; 85</span></td>
+            <td id="Sr" class="alkaline-earth-metal"><p class="Srinfo">Strontium</p><a href="https://en.wikipedia.org/wiki/Strontium">Sr</a><span class="number"><br>38</span><span class="mass">&nbsp; 88</span></td>
+            <td id="Y"  class="transition-metal"><p class="Yinfo" >Yttrium</p><a href="https://en.wikipedia.org/wiki/Yttrium">Y</a><span class="number"><br>39</span><span class="mass">&nbsp; 89</span></td>
+            <td id="Zr" class="transition-metal"><p class="Zrinfo">Zirconium</p><a href="https://en.wikipedia.org/wiki/Zirconium">Zr</a><span class="number"><br>40</span><span class="mass">&nbsp; 91</span></td>
+            <td id="Nb" class="transition-metal"><p class="Nbinfo">Niobium</p><a href="https://en.wikipedia.org/wiki/Niobium">Nb</a><span class="number"><br>41</span><span class="mass">&nbsp; 93</span></td>
+            <td id="Mo" class="transition-metal"><p class="Moinfo">Molybdenum</p><a href="https://en.wikipedia.org/wiki/Molybdenum">Mo</a><span class="number"><br>42</span><span class="mass">&nbsp; 96</span></td>
+            <td id="Tc" class="transition-metal"><p class="Tcinfo">Technetium</p><a href="https://en.wikipedia.org/wiki/Technetium">Tc</a><span class="number"><br>43</span><span class="mass">&nbsp; 98</span></td>
+            <td id="Ru" class="transition-metal"><p class="Ruinfo">Ruthernium</p><a href="https://en.wikipedia.org/wiki/Ruthernium">Ru</a><span class="number"><br>44</span><span class="mass">&nbsp; 101</span></td>
+            <td id="Rh" class="transition-metal"><p class="Rhinfo">Rhodium</p><a href="https://en.wikipedia.org/wiki/Rhodium">Rh</a><span class="number"><br>45</span><span class="mass">&nbsp; 103</span></td>
+            <td id="Pd" class="transition-metal"><p class="Pdinfo">Palladium</p><a href="https://en.wikipedia.org/wiki/Palladium">Pd</a><span class="number"><br>46</span><span class="mass">&nbsp; 106</span></td>
+            <td id="Ag" class="transition-metal"><p class="Aginfo">Silver</p><a href="https://en.wikipedia.org/wiki/Silver">Ag</a><span class="number"><br>47</span><span class="mass">&nbsp; 108</span></td>
+            <td id="Cd" class="transition-metal"><p class="Cdinfo">Cadmium</p><a href="https://en.wikipedia.org/wiki/Cadmium">Cd</a><span class="number"><br>48</span><span class="mass">&nbsp; 112</span></td>
+            <td id="In" class="post-transition-metal"><p class="Ininfo">Indium</p><a href="https://en.wikipedia.org/wiki/Indium">In</a><span class="number"><br>49</span><span class="mass">&nbsp; 115</span></td>
+            <td id="Sn" class="post-transition-metal"><p class="Sninfo">Tin</p><a href="https://en.wikipedia.org/wiki/Tin">Sn</a><span class="number"><br>50</span><span class="mass">&nbsp; 119</span></td>
+            <td id="Sb" class="metalloid"><p class="Sbinfo">Antimony</p><a href="https://en.wikipedia.org/wiki/Antimony">Sb</a><span class="number"><br>51</span><span class="mass">&nbsp; 122</span></td>
+            <td id="Te" class="metalloid"><p class="Teinfo">Tellurium</p><a href="https://en.wikipedia.org/wiki/Tellurium">Te</a><span class="number"><br>52</span><span class="mass">&nbsp; 128</span></td>
+            <td id="I" class="diatomic-non-metal"><p class="Iinfo">Iodine</p><a href="https://en.wikipedia.org/wiki/Iodine">I</a><span class="number"><br>53</span><span class="mass">&nbsp; 127</span></td>
+            <td id="Xe" class="noble-gas"><p class="Xeinfo">Xenon</p><a href="https://en.wikipedia.org/wiki/Xenon">Xe</a><span class="number"><br>54</span><span class="mass">&nbsp; 131</span></td>
+        </tr>
+
+<!-- Table Row 6-->
+
+        <tr>
+            <td id="Cs" class="alkali"><p class="Csinfo">Caesium</p><a href="https://en.wikipedia.org/wiki/Caesium">Cs</a><span class="number"><br>55</span><span class="mass">&nbsp; 133</span></td>
+            <td id="Ba" class="alkaline-earth-metal"><p class="Bainfo">Barium</p><a href="https://en.wikipedia.org/wiki/Barium">Ba</a><span class="number"><br>56</span><span class="mass">&nbsp; 137</span></td>
+            <td id="Lu" class="lanthanide"><p class="Luinfo">Lanthanide</p><a href="https://en.wikipedia.org/wiki/Lanthanide">Lu</a><span class="number"><br>71</span><span class="mass">&nbsp; 175</span></td>
+            <td id="Hf" class="transition-metal"><p class="Hfinfo">Hafnium</p><a href="https://en.wikipedia.org/wiki/Hafnium">Hf</a><span class="number"><br>72</span><span class="mass">&nbsp; 178</span></td>
+            <td id="Ta" class="transition-metal"><p class="Tainfo">Tantalum</p><a href="https://en.wikipedia.org/wiki/Tantalum">Ta</a><span class="number"><br>73</span><span class="mass">&nbsp; 181</span></td>
+            <td id="W" class="transition-metal"><p class="Winfo">Tungsten</p><a href="https://en.wikipedia.org/wiki/Tungsten">W</a><span class="number"><br>74</span><span class="mass">&nbsp; 184</span></td>
+            <td id="Re" class="transition-metal"><p class="Reinfo">Rhenium</p><a href="https://en.wikipedia.org/wiki/Rhenium">Re</a><span class="number"><br>75</span><span class="mass">&nbsp; 186</span></td>
+            <td id="Os" class="transition-metal"><p class="Osinfo">Osmium</p><a href="https://en.wikipedia.org/wiki/Osmium">Os</a><span class="number"><br>76</span><span class="mass">&nbsp; 190</span></td>
+            <td id="Ir" class="transition-metal"><p class="Irinfo">Iridium</p><a href="https://en.wikipedia.org/wiki/Iridium">Ir</a><span class="number"><br>77</span><span class="mass">&nbsp; 192</span></td>
+            <td id="Pt" class="transition-metal"><p class="Ptinfo">Platinum</p><a href="https://en.wikipedia.org/wiki/Platinum">Pt</a><span class="number"><br>78</span><span class="mass">&nbsp; 195</span></td>
+            <td id="Au" class="transition-metal"><p class="Auinfo">Gold</p><a href="https://en.wikipedia.org/wiki/Gold">Au</a><span class="number"><br>79</span><span class="mass">&nbsp; 197</span></td>
+            <td id="Hg" class="transition-metal"><p class="Hginfo">Mercury</p><a href="https://en.wikipedia.org/wiki/Mercury">Hg</a><span class="number"><br>80</span><span class="mass">&nbsp; 201</span></td>
+            <td id="Tl" class="post-transition-metal"><p class="Tlinfo">Thallium</p><a href="https://en.wikipedia.org/wiki/Thallium">Tl</a><span class="number"><br>81</span><span class="mass">&nbsp; 204</span></td>
+            <td id="Pb" class="post-transition-metal"><p class="Pdinfo">Lead</p><a href="https://en.wikipedia.org/wiki/Lead">Pb</a><span class="number"><br>82</span><span class="mass">&nbsp; 207</span></td>
+            <td id="Bi" class="post-transition-metal"><p class="Biinfo">Bismuth</p><a href="https://en.wikipedia.org/wiki/Bismuth">Bi</a><span class="number"><br>83</span><span class="mass">&nbsp; 209</span></td>
+            <td id="Po" class="post-transition-metal"><p class="Poinfo">Polonium</p><a href="https://en.wikipedia.org/wiki/Polonium">Po</a><span class="number"><br>84</span><span class="mass">&nbsp; 210</span></td>
+            <td id="At" class="metalloid"><p class="Atinfo">Astatine</p><a href="https://en.wikipedia.org/wiki/Astatine">At</a><span class="number"><br>85</span><span class="mass">&nbsp; 210</span></td>
+            <td id="Rn" class="noble-gas"><p class="Rninfo">Radon</p><a href="https://en.wikipedia.org/wiki/Radon">Rn</a><span class="number"><br>86</span><span class="mass">&nbsp; 220</span></td>
+        </tr>
+
+<!-- Table Row 7-->
+
+        <tr>
+            <td id="Fr" class="alkali"><p class="Frinfo">Francium</p><a href="https://en.wikipedia.org/wiki/Francium">Fr</a><span class="number"><br>87</span><span class="mass">&nbsp; 223</span></td>
+            <td id="Ra" class="alkaline-earth-metal"><p class="Rainfo">Radium</p><a href="https://en.wikipedia.org/wiki/Radium">Ra</a><span class="number"><br>88</span><span class="mass">&nbsp; 226</span></td>
+            <td id="Ac" class="actinide"><p class="Acinfo">Actinium</p><a href="https://en.wikipedia.org/wiki/Actinium">Ac</a><span class="number"><br>103</span><span class="mass">&nbsp; 133</span></td>
+            <td id="Rf" class="transition-metal"><p class="Rfinfo">Rutherfordium</p><a href="https://en.wikipedia.org/wiki/Rutherfordium">Rf</a><span class="number"><br>104</span><span class="mass">&nbsp; 262</span></td>
+            <td id="Db" class="transition-metal"><p class="Dbinfo">Dubnium</p><a href="https://en.wikipedia.org/wiki/Dubnium">Db</a><span class="number"><br>105</span><span class="mass">&nbsp; 261</span></td>
+            <td id="Sg" class="transition-metal"><p class="Sginfo">Seaborgium</p><a href="https://en.wikipedia.org/wiki/Seaborgium">Sg</a><span class="number"><br>106</span><span class="mass">&nbsp; 262</span></td>
+            <td id="Bh" class="transition-metal"><p class="Bhinfo">Bohrium</p><a href="https://en.wikipedia.org/wiki/Bohrium">Bh</a><span class="number"><br>107</span><span class="mass">&nbsp; 266</span></td>
+            <td id="Hs" class="transition-metal"><p class="Hsinfo">Hassium</p><a href="https://en.wikipedia.org/wiki/Hassium">Hs</a><span class="number"><br>108</span><span class="mass">&nbsp; 264</span></td>
+            <td id="Mt" class="unknown"><p class="Mtinfo">Meitnerium</p><a href="https://en.wikipedia.org/wiki/Meitnerium">Mt</a><span class="number"><br>109</span><span class="mass">&nbsp; 277</span></td>
+            <td id="Ds" class="unknown"><p class="Dsinfo">Darmstadtium</p><a href="https://en.wikipedia.org/wiki/Darmstadtium">Ds</a><span class="number"><br>110</span><span class="mass">&nbsp; 268</span></td>
+            <td id="Rg" class="unknown"><p class="Rginfo">Roentgenium</p><a href="https://en.wikipedia.org/wiki/Roentgenium">Rg</a><span class="number"><br>111</span><span class="mass">&nbsp; 271</span></td>
+            <td id="Cn" class="transition-metal"><p class="Cninfo">Copernicium</p><a href="https://en.wikipedia.org/wiki/Copernicium">Cn</a><span class="number"><br>112</span><span class="mass">&nbsp; 272</span></td>
+            <td id="Uut" class="unknown"><p class="Uutinfo">Nihonium</p><a href="https://en.wikipedia.org/wiki/Nihonium">Uut</a><span class="number"><br>113</span><span class="mass">&nbsp; 285</span></td>
+            <td id="Fl" class="post-transition-metal"><p class="Flinfo">Flerovium</p><a href="https://en.wikipedia.org/wiki/Flerovium">Fl</a><span class="number"><br>114</span><span class="mass">&nbsp; 284</span></td>
+            <td id="Uup" class="unknown"><p class="Uupinfo">Moscovium</p><a href="https://en.wikipedia.org/wiki/Moscovium">Uup</a><span class="number"><br>115</span><span class="mass">&nbsp; 289</span></td>
+            <td id="Lv" class="unknown"><p class="Lvinfo">Livermorium</p><a href="https://en.wikipedia.org/wiki/Livermorium">Lv</a><span class="number"><br>116</span><span class="mass">&nbsp; 288</span></td>
+            <td id="Uus" class="unknown"><p class="Uusinfo">Tennessine</p><a href="https://en.wikipedia.org/wiki/Tennessine">Uus</a><span class="number"><br>117</span><span class="mass">&nbsp; 292</span></td>
+            <td id="Uuo" class="unknown"><p class="Uuoinfo">Oganesson</p><a href="https://en.wikipedia.org/wiki/Oganesson">Uuo</a><span class="number"><br>118</span><span class="mass">&nbsp; 133</span></td>
+        </tr>
+
+<!-- End of Table -->
+
+        </table>
+
+<!-- Legend -->
+
+        <p class="legend">He = Element Name &nbsp; &nbsp; 2 = Atomic Number &nbsp; &nbsp; 4 = Mass Number</p>
+        <p class="legend github">View More at <a href="https://github.com/Aculisme">Github.com/Aculisme</a></p>
+
+<!-- End of Legend -->
+    </body>
+
+</html>
